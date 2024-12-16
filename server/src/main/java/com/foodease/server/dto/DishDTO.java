@@ -7,5 +7,6 @@ public class DishDTO {
     private String name;
     private String description;
     private double price;
+    private String dishUrl;
 }
 

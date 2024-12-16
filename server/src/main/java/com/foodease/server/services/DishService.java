@@ -23,6 +23,7 @@ public class DishService {
         dish.setRestaurantId(currentRestaurant.getId());
         dish.setDescription(dishDTO.getDescription());
         dish.setPrice(dishDTO.getPrice());
+        dish.setDishUrl(dishDTO.getDishUrl());
         return dishRepository.save(dish);
     }
 
