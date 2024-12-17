@@ -93,7 +93,7 @@ export default function OrderPage() {
 
     try {
       setIsOrdering(true);
-      const response = await axios.post('http://3.111.41.233:8080/api/order/create-order', {
+      const response = await axios.post('http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/order/create-order', {
         tableId: params.tableId,
         customerName,
         customerPhone,

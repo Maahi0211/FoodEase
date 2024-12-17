@@ -112,7 +112,7 @@ export default function MenuPage() {
 
   const fetchDishes = async () => {
     try {
-      const response = await axios.get('http://3.111.41.233:8080/api/dish/all-dishes', {
+      const response = await axios.get('http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/dish/all-dishes', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -190,7 +190,7 @@ export default function MenuPage() {
         dishUrl: formData.dishUrl,
       });
 
-      const response = await axios.post<DishResponse>('http://3.111.41.233:8080/api/dish/add-dish', {
+      const response = await axios.post<DishResponse>('http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/dish/add-dish', {
         name: formData.name,
         description: formData.description,
         price: parseFloat(formData.price),
@@ -230,7 +230,7 @@ export default function MenuPage() {
   const confirmDelete = async () => {
     try {
       setDeletingDishId(deleteModal.dishId);
-      const response = await axios.delete(`http://3.111.41.233:8080/api/dish/remove/${deleteModal.dishId}`, {
+      const response = await axios.delete(`http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/dish/remove/${deleteModal.dishId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

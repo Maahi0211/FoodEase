@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://3.111.41.233:3000](http://3.111.41.233:3000) with your browser to see the result.
+Open [http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:3000](http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

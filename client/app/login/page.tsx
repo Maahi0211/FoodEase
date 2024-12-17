@@ -24,7 +24,7 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await fetch('http://3.111.41.233:8080/api/auth/login', {
+      const response = await fetch('http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

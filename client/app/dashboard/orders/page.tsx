@@ -56,7 +56,7 @@ export default function OrdersPage() {
     try {
       // Fetch tables
       const tablesResponse = await axios.get(
-        'http://3.111.41.233:8080/api/table/restaurant/my-table',
+        'http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/table/restaurant/my-table',
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -67,7 +67,7 @@ export default function OrdersPage() {
 
       // Fetch orders
       const ordersResponse = await axios.get(
-        'http://3.111.41.233:8080/api/order/get-order-by-token',
+        'http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/order/get-order-by-token',
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -103,7 +103,7 @@ export default function OrdersPage() {
     try {
       setUpdatingOrderId(orderId);
       const response = await axios.put(
-        `http://3.111.41.233:8080/api/order/update-order-status/${orderId}`,
+        `http://ec2-3-111-41-233.ap-south-1.compute.amazonaws.com:8080/api/order/update-order-status/${orderId}`,
         { status },
         {
           headers: {
