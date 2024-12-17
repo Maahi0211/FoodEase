@@ -2,11 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-export const metadata = {
-  title: 'Login',
-}
-
 export default function Login() {
   const router = useRouter();
   const [formData, setFormData] = useState({

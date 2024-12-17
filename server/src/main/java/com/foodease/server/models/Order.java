@@ -21,5 +21,6 @@ public class Order {
     private String customerPhone;
     private List<OrderItem> items; // List of ordered dishes
     private String status; // e.g., "Pending", "Completed"
+    private String tableNumber; // Add this field
 }
 

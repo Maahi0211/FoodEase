@@ -11,7 +11,7 @@ interface Dish {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  dishUrl: string;
 }
 
 interface CartItem {
@@ -141,7 +141,7 @@ export default function OrderPage() {
             className="bg-white rounded-lg shadow-sm overflow-hidden flex"
           >
             <img
-              src={dish.imageUrl}
+              src={dish.dishUrl}
               alt={dish.name}
               className="w-24 h-24 object-cover"
             />

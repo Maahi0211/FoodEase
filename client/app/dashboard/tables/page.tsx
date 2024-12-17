@@ -232,6 +232,7 @@ export default function TablesPage() {
 
   const handleShowQR = (table: Table) => {
     const qrValue = `${window.location.origin}/${table.restaurantId}/${table.id}`;
+    console.log('QR Value:', qrValue);
     setQrModal({
       isOpen: true,
       tableNumber: table.tableNumber,
@@ -365,6 +366,13 @@ export default function TablesPage() {
 
       {/* Toast Container */}
       <div><Toaster position="top-right" /></div>
+
+      <QRCodeModal
+        isOpen={qrModal.isOpen}
+        tableNumber={qrModal.tableNumber}
+        qrValue={qrModal.qrValue}
+        onClose={() => setQrModal({ isOpen: false, tableNumber: '', qrValue: '' })}
+      />
     </div>
   );
 }
