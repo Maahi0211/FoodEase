@@ -1,7 +1,4 @@
 'use client';
-const metadata = {
-    title: 'Tables',
-  }
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, Trash2, AlertTriangle, QrCode } from 'lucide-react';

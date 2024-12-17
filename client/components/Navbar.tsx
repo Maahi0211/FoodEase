@@ -1,5 +1,5 @@
 import Link from "next/link"
-
+import Image from 'next/image';
 
 export default function Navbar() {
     return (
@@ -7,7 +7,13 @@ export default function Navbar() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold text-orange-500 flex items-center gap-2">
-              <img src="/logo.png" className="w-10"/>
+              <Image 
+                src="/logo.png" 
+                alt="FoodEase Logo"
+                width={40}
+                height={40}
+                className="w-10"
+              />
               FoodEase
             </div>
             <div className="hidden md:flex space-x-8">

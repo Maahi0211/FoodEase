@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import DashboardStats from '@/components/dashboard/DashboardStats';
 import RecentOrders from '@/components/dashboard/RecentOrders';
 import PopularDishes from '@/components/dashboard/PopularDishes';
@@ -15,7 +14,7 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* <DashboardStats /> */}
+      <DashboardStats />
 
       <div className="grid lg:grid-cols-2 gap-8">
         <RevenueChart />

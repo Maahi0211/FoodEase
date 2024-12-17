@@ -1,10 +1,13 @@
 'use client';
-const metadata = {
-  title: 'Signup',
-}
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+interface SignupError {
+  message: string;
+  status?: number;
+}
 
 export default function Signup() {
   const router = useRouter();
@@ -37,11 +40,11 @@ export default function Signup() {
         throw new Error(data.message || 'Signup failed');
       }
 
-      // Store token in localStorage
       localStorage.setItem('token', data.token);
-      router.push('/dashboard'); // Redirect to dashboard
-    } catch (err: any) {
-      setError(err.message);
+      router.push('/dashboard');
+    } catch (err) {
+      const error = err as SignupError;
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -161,9 +164,11 @@ export default function Signup() {
           <div className="absolute top-0 -left-4 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute top-0 -right-4 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-          <img
+          <Image
             src="/signup-illustration.svg"
-            alt="Sign Up"
+            alt="Sign Up Illustration"
+            width={500}
+            height={500}
             className="relative z-10 w-full"
           />
         </div>

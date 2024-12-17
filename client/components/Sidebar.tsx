@@ -1,10 +1,22 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
-export default function Sidebar({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: React.ReactNode;
+}
+
+interface SidebarProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+export default function Sidebar({ open, setOpen }: SidebarProps) {
   const pathname = usePathname();
 
-  const navigation = [
+  const navigation: NavigationItem[] = [
     {
       name: 'Dashboard',
       href: '/dashboard',
@@ -95,9 +107,11 @@ export default function Sidebar({ open, setOpen }: { open: boolean; setOpen: (op
           {/* User Profile */}
           <div className="p-4 border-t border-gray-200">
             <button className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">
-              <img
+              <Image
                 src="https://ui-avatars.com/api/?name=John+Doe"
-                alt="User"
+                alt="User Avatar"
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full mr-3"
               />
               <div className="flex-1 text-left">

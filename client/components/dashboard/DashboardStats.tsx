@@ -1,7 +1,15 @@
 'use client';
 
-const DashboardStats = () => {
-  const stats = [
+interface Stat {
+  name: string;
+  value: string;
+  change: string;
+  changeType: 'increase' | 'decrease' | 'neutral';
+  icon: React.ReactNode;
+}
+
+const DashboardStats: React.FC = () => {
+  const stats: Stat[] = [
     {
       name: 'Total Orders',
       value: '156',

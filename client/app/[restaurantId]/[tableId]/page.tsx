@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
 import { ShoppingCart, Plus, Minus, X } from 'lucide-react';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 interface Dish {
   id: string;
@@ -31,20 +32,20 @@ export default function OrderPage() {
   const [customerPhone, setCustomerPhone] = useState('');
   const [isOrdering, setIsOrdering] = useState(false);
 
-  useEffect(() => {
-    fetchDishes();
-  }, []);
-
-  const fetchDishes = async () => {
+  const fetchDishes = useCallback(async () => {
     try {
-      const response = await axios.get(`http://3.111.41.233:8080/api/dish/${params.restaurantId}`);
+      const response = await axios.get(`/api/dishes/${params.restaurantId}`);
       setDishes(response.data);
-    } catch (error) {
+    } catch (_err) {
       toast.error('Failed to fetch menu');
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.restaurantId]);
+
+  useEffect(() => {
+    fetchDishes();
+  }, [fetchDishes]);
 
   const addToCart = (dish: Dish) => {
     setCart(prevCart => {
@@ -140,10 +141,12 @@ export default function OrderPage() {
             key={dish.id}
             className="bg-white rounded-lg shadow-sm overflow-hidden flex"
           >
-            <img
+            <Image
               src={dish.dishUrl}
               alt={dish.name}
-              className="w-24 h-24 object-cover"
+              width={300}
+              height={300}
+              className="w-full h-full object-cover"
             />
             <div className="p-3 flex-1 flex flex-col justify-between">
               <div>

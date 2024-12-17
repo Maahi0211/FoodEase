@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Hero() {
     return (
       <section className="min-h-screen pt-28 pb-20 bg-gradient-to-b from-orange-50 to-white relative overflow-hidden">
@@ -52,7 +54,7 @@ export default function Hero() {
             <div className="flex-1 relative">
               <div className="relative w-full aspect-square max-w-[600px] mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-full animate-pulse"></div>
-                <img 
+                <Image
                   src="/hero-image.jpg" 
                   alt="Restaurant QR Ordering" 
                   className="relative z-10 w-full h-full object-cover animate-float"

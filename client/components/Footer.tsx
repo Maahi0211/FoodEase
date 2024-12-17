@@ -1,4 +1,6 @@
 // components/Footer.tsx
+import Link from 'next/link';
+
 const Footer = () => {
     return (
       <footer className="bg-white border-t">
@@ -14,24 +16,24 @@ const Footer = () => {
   
             {/* Quick Links */}
             <div className="flex space-x-8">
-              <a 
+              <Link 
                 href="/about" 
                 className="text-gray-600 hover:text-orange-500 transition-colors"
               >
                 About
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact" 
                 className="text-gray-600 hover:text-orange-500 transition-colors"
               >
                 LinkedIn
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/privacy" 
                 className="text-gray-600 hover:text-orange-500 transition-colors"
               >
                 Github
-              </a>
+              </Link>
             </div>
           </div>
   

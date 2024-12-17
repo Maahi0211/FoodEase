@@ -2,6 +2,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+interface LoginError {
+  message: string;
+  status?: number;
+}
+
 export default function Login() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -31,11 +38,11 @@ export default function Login() {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Store token in localStorage
       localStorage.setItem('token', data.token);
-      router.push('/dashboard'); // Redirect to dashboard
-    } catch (err: any) {
-      setError(err.message);
+      router.push('/dashboard');
+    } catch (err) {
+      const error = err as LoginError;
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -49,10 +56,12 @@ export default function Login() {
           <div className="absolute top-0 -left-4 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute top-0 -right-4 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-          <img
+          <Image
             src="/login-illustration.svg"
-            alt="Login"
-            className="relative z-10 w-full"
+            alt="Login Illustration"
+            width={500}
+            height={500}
+            className="relative z-10"
           />
         </div>
       </div>

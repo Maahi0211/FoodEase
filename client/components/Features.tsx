@@ -1,5 +1,11 @@
+interface Feature {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
 export default function Features() {
-  const features = [
+  const features: Feature[] = [
     {
       title: "Smart QR Generation",
       description: "Create unique QR codes for each table instantly. Easy to print and replace.",

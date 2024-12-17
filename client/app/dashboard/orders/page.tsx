@@ -15,20 +15,25 @@ interface OrderItem {
 
 interface Order {
   id: string;
-  tableId: string;
   tableNumber: string;
-  restaurantId: string;
   customerName: string;
   customerPhone: string;
   items: OrderItem[];
   status: string;
   totalAmount?: number;
+  createdAt?: string;
 }
 
 interface TableStatus {
   tableNumber: string;
   status: 'empty' | 'occupied' | 'pending';
   orderId?: string;
+}
+
+interface Table {
+  id: string;
+  tableNumber: string;
+  status: 'empty' | 'occupied' | 'pending';
 }
 
 const metadata = {

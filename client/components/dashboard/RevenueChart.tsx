@@ -4,7 +4,7 @@ import Chart from 'chart.js/auto';
 
 export default function RevenueChart() {
   const chartRef = useRef<HTMLCanvasElement>(null);
-  const chartInstance = useRef<Chart | null>(null);
+  const chartInstance = useRef<Chart<'line', number[], string> | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {

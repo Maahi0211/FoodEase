@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function PopularDishes() {
   const dishes = [
     {
@@ -25,9 +27,11 @@ export default function PopularDishes() {
       <div className="divide-y divide-gray-100">
         {dishes.map((dish) => (
           <div key={dish.name} className="p-6 flex items-center">
-            <img
+            <Image
               src={dish.image}
               alt={dish.name}
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-lg object-cover"
             />
             <div className="ml-4 flex-1">
