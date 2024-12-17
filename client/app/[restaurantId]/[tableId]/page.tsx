@@ -37,7 +37,7 @@ export default function OrderPage() {
 
   const fetchDishes = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/dish/${params.restaurantId}`);
+      const response = await axios.get(`http://3.111.41.233:8080/api/dish/${params.restaurantId}`);
       setDishes(response.data);
     } catch (error) {
       toast.error('Failed to fetch menu');
@@ -92,7 +92,7 @@ export default function OrderPage() {
 
     try {
       setIsOrdering(true);
-      const response = await axios.post('http://localhost:8080/api/order/create-order', {
+      const response = await axios.post('http://3.111.41.233:8080/api/order/create-order', {
         tableId: params.tableId,
         customerName,
         customerPhone,

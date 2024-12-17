@@ -51,7 +51,7 @@ export default function OrdersPage() {
     try {
       // Fetch tables
       const tablesResponse = await axios.get(
-        'http://localhost:8080/api/table/restaurant/my-table',
+        'http://3.111.41.233:8080/api/table/restaurant/my-table',
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -62,7 +62,7 @@ export default function OrdersPage() {
 
       // Fetch orders
       const ordersResponse = await axios.get(
-        'http://localhost:8080/api/order/get-order-by-token',
+        'http://3.111.41.233:8080/api/order/get-order-by-token',
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -98,7 +98,7 @@ export default function OrdersPage() {
     try {
       setUpdatingOrderId(orderId);
       const response = await axios.put(
-        `http://localhost:8080/api/order/update-order-status/${orderId}`,
+        `http://3.111.41.233:8080/api/order/update-order-status/${orderId}`,
         { status },
         {
           headers: {
