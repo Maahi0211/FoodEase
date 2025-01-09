@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +35,6 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                // Configure channel security for HTTPS
                 .requiresChannel(channel -> channel
                     .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
                     .requiresSecure()
@@ -44,8 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/dish/**").permitAll()
                         .requestMatchers("/api/table/**").permitAll()
                         .requestMatchers("/api/order/**").permitAll()
-                        // Add health check endpoint if needed
-                        .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // Allow preflight requests
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> 
@@ -58,8 +57,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        // Replace these with your actual frontend URLs in production
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:3000",
+            "https://food-ease-teal.vercel.app/"
+        ));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList(
             "Authorization",
             "Content-Type",
@@ -67,12 +70,9 @@ public class SecurityConfig {
             "Accept",
             "Origin",
             "Access-Control-Request-Method",
-            "Access-Control-Request-Headers",
-            "X-Forwarded-Proto",
-            "X-Forwarded-For",
-            "X-Real-IP"
+            "Access-Control-Request-Headers"
         ));
-        configuration.setExposedHeaders(Arrays.asList("Authorization"));
+        configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
