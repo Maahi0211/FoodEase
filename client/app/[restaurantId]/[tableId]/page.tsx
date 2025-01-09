@@ -34,7 +34,7 @@ export default function OrderPage() {
 
   const fetchDishes = useCallback(async () => {
     try {
-      const response = await axios.get(`https://foodease-1.onrender.com:8080/api/dishes/${params.restaurantId}`);
+      const response = await axios.get(`https://foodease-1.onrender.com/api/dishes/${params.restaurantId}`);
       setDishes(response.data);
     } catch (_err) {
       toast.error('Failed to fetch menu');
@@ -93,7 +93,7 @@ export default function OrderPage() {
 
     try {
       setIsOrdering(true);
-      const response = await axios.post('https://foodease-1.onrender.com:8080/api/order/create-order', {
+      const response = await axios.post('https://foodease-1.onrender.com/api/order/create-order', {
         tableId: params.tableId,
         customerName,
         customerPhone,
