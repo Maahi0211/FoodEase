@@ -154,7 +154,7 @@ export default function TablesPage() {
 
   const fetchTables = async () => {
     try {
-      const response = await axios.get('https://foodease-1.onrender.com:8080/api/table/restaurant/my-table', {
+      const response = await axios.get('https://foodease-1.onrender.com/api/table/restaurant/my-table', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -175,7 +175,7 @@ export default function TablesPage() {
 
     try {
       setLoading(true);
-      const response = await axios.post('https://foodease-1.onrender.com:8080/api/table/add-table', 
+      const response = await axios.post('https://foodease-1.onrender.com/api/table/add-table', 
         { tableNumber: newTableNumber },
         {
           headers: {
@@ -206,7 +206,7 @@ export default function TablesPage() {
     try {
       setDeletingTableId(deleteModal.tableId);
       const response = await axios.delete(
-        `https://foodease-1.onrender.com:8080/api/table/restaurant/remove-table/${deleteModal.tableId}`,
+        `https://foodease-1.onrender.com/api/table/restaurant/remove-table/${deleteModal.tableId}`,
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
