@@ -44,6 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/dish/**").permitAll()
                         .requestMatchers("/api/table/**").permitAll()
                         .requestMatchers("/api/order/**").permitAll()
+                        .requestMatchers("/api/restaurant/**").permitAll()
                         .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // Allow preflight requests
                         .anyRequest().authenticated()
                 )
