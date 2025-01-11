@@ -51,9 +51,9 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="h-screen flex overflow-hidden">
       {/* Left side - Form */}
-      <div className="flex-1 flex items-center justify-center p-8">
+      <div className="flex-1 flex items-center justify-center p-8 overflow-y-auto">
         <div className="w-full max-w-md">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
             Create Account
@@ -159,17 +159,17 @@ export default function Signup() {
       </div>
 
       {/* Right side - Image */}
-      <div className="hidden lg:flex lg:w-1/2 bg-orange-50 items-center justify-center p-12">
-        <div className="relative w-full max-w-lg">
+      <div className="hidden lg:block lg:w-1/2 relative">
+        <div className="absolute inset-0">
           <div className="absolute top-0 -left-4 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute top-0 -right-4 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
           <Image
-            src="/signup-illustration.svg"
+            src="/signup-banner.jpg"
             alt="Sign Up Illustration"
-            width={500}
-            height={500}
-            className="relative z-10 w-full"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
       </div>

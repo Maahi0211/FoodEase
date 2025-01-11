@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { LogOut } from 'lucide-react';
 
 interface NavigationItem {
   name: string;
@@ -13,19 +16,42 @@ interface SidebarProps {
   setOpen: (open: boolean) => void;
 }
 
+interface RestaurantDTO {
+  name: string;
+}
+
 export default function Sidebar({ open, setOpen }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [restaurant, setRestaurant] = useState<RestaurantDTO | null>(null);
+
+  useEffect(() => {
+    const fetchRestaurantDetails = async () => {
+      try {
+        const response = await fetch('https://foodease-1.onrender.com/api/restaurant/details', {
+          credentials: 'include',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setRestaurant(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch restaurant details:', error);
+      }
+    };
+
+    fetchRestaurantDetails();
+  }, []);
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    router.push('/login');
+  };
 
   const navigation: NavigationItem[] = [
-    {
-      name: 'Dashboard',
-      href: '/dashboard',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-      ),
-    },
     {
       name: 'Menu Management',
       href: '/dashboard/menu',
@@ -50,15 +76,6 @@ export default function Sidebar({ open, setOpen }: SidebarProps) {
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-        </svg>
-      ),
-    },
-    {
-      name: 'Analytics',
-      href: '/dashboard/analytics',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
     },
@@ -104,20 +121,25 @@ export default function Sidebar({ open, setOpen }: SidebarProps) {
             ))}
           </nav>
 
-          {/* User Profile */}
-          <div className="p-4 border-t border-gray-200">
-            <button className="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">
-              <Image
-                src="https://ui-avatars.com/api/?name=John+Doe"
-                alt="User Avatar"
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-full mr-3"
-              />
-              <div className="flex-1 text-left">
-                <div className="font-medium">John Doe</div>
-                <div className="text-xs text-gray-500">john@example.com</div>
+          {/* User Profile Section - pushed to bottom */}
+          <div className="mt-auto border-t border-gray-200 p-4">
+            {restaurant && (
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {restaurant.name}
+                </h3>
+                {/* Add other restaurant details you want to display */}
               </div>
+            )}
+            
+            <button 
+              onClick={handleLogout}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 
+                       bg-red-500 hover:bg-red-600 text-white rounded-md 
+                       transition-colors duration-200 ease-in-out"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
             </button>
           </div>
         </div>

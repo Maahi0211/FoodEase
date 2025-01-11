@@ -19,7 +19,7 @@ export default function Hero() {
                 <span className="text-orange-500 block">QR-Powered Dining</span>
               </h1>
               <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto lg:mx-0">
-                Transform your dining experience with our contactless QR ordering system.
+                Your dining experience with our contactless QR ordering system.
                 No apps needed, just scan and enjoy!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -55,6 +55,8 @@ export default function Hero() {
               <div className="relative w-full aspect-square max-w-[600px] mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-full animate-pulse"></div>
                 <Image
+                  width={600}
+                  height={600}
                   src="/hero-image.jpg" 
                   alt="Restaurant QR Ordering" 
                   className="relative z-10 w-full h-full object-cover animate-float"

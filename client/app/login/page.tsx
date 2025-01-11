@@ -51,17 +51,17 @@ export default function Login() {
   return (
     <div className="min-h-screen flex">
       {/* Left side - Image */}
-      <div className="hidden lg:flex lg:w-1/2 bg-orange-50 items-center justify-center p-12">
-        <div className="relative w-full max-w-lg">
+      <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0">
           <div className="absolute top-0 -left-4 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute top-0 -right-4 w-72 h-72 bg-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
           <Image
-            src="/login-illustration.svg"
+            src="/login-banner.jpg"
             alt="Login Illustration"
-            width={500}
-            height={500}
-            className="relative z-10"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
       </div>
